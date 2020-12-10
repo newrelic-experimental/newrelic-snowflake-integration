@@ -1,0 +1,2 @@
+-- Get all failed logins from between 120 and 60 minutes ago - this is due to data latency in the Snowflake data
+select * from "SNOWFLAKE"."ACCOUNT_USAGE"."LOGIN_HISTORY" where is_success = 'NO' and event_timestamp > dateadd(minute, -120, getdate()) AND event_timestamp < dateadd(minute, -60, getdate());
