@@ -45,9 +45,9 @@ connection.execute({
             row[key] = row[key] + "";
           }
         }
+        //out the data to the console
+        console.log(JSON.stringify(row));
       });
-      // console log for flex to collect data
-      console.log(JSON.stringify(rows));
     }
   }
 });
