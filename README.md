@@ -15,7 +15,7 @@ New Relic integration with Snowflake to monitor query performance, logins, poten
 
 ### Assign values to the following environment variables:
 
-- `NR_SNOWFLAKE_HOME` - the directory where you install this integration i.e. `/home/user/newrelic-snowflake-integration`
+- `NEWRELIC_SNOWFLAKE_HOME` - the directory where you installed this integration i.e. `/home/user/newrelic-snowflake-integration`
 - `SNOWSQL_ACCOUNT` - your snowflake account name
   - for example for Azure snowflake instance ab123.west-europe.azure
 - `SNOWSQL_USER` - your snowflake username (used for logging into the account)

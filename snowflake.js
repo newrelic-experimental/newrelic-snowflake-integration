@@ -18,8 +18,8 @@ const connection = snowflake.createConnection({
   account: account,
   username: user,
   password: password,
-  database: database,
-  schema: schema,
+  // database: database,
+  // schema: schema,
   role: role
 });
 

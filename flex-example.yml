@@ -7,61 +7,62 @@ integrations:
       global:
         custom_attributes:
           environment: production
+          snowflakeAccount: $$SNOWSQL_ACCOUNT
       apis:
         - name: snowflakeAccountMetering
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/account_metering.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql
         - name: snowflakeAutomaticClusteringUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.automatic_clustering
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/automatic_clustering_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/automatic_clustering_usage.sql
         - name: snowflakeDataTransferUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.data_transfer
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/data_transfer_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/data_transfer_usage.sql
         - name: snowflakeDatabaseStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.database_storage
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/database_storage_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/database_storage_usage.sql
         - name: snowflakeFailedLogins
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.failed_logins
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/failed_logins.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/failed_logins.sql
         - name: snowflakePipeUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.pipe_usage
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/pipe_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/pipe_usage.sql
         - name: snowflakeReplicationUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.replication_usage
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/replication_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/replication_usage.sql
         - name: snowflakeStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.storage_usage
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/storage_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/storage_usage.sql
         - name: snowflakeTableStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.table_storage_usage
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/table_storage_usage.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/table_storage_usage.sql
         # Query History emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeQueryHistory
@@ -69,7 +70,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.query_performance
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/query_history.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql
         # Warehouse Load History emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeWarehouseLoadHistory
@@ -77,7 +78,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.warehouse_performance
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/warehouse_load_history.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_load_history.sql
         # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeWarehouseMetering
@@ -85,4 +86,4 @@ integrations:
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: node $$NR_SNOWFLAKE_HOME/snowflake.js $$NR_SNOWFLAKE_HOME/queries/warehouse_metering.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_metering.sql
