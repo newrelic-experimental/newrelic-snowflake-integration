@@ -2,18 +2,17 @@
 
 # [New Relic Snowflake Integration] [build badges go here when available]
 
->[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
->
-New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting
+A New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting. 
 
 ## Installation
 
-> [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
+1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
+2. Download the relevant binary for your platform from `releases` and place it somewhere on the host running New Relic infra agent
+3. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
+4. If running the New Relic infrastructure agent as a systemd service, follow these [additional steps](#when-the-agent-is-running-as-a-systemd-service)
+5. Copy `flex-snowflake.yml` to the agent's `integrations.d` folder. For linux it is found at `/etc/newrelic-infra/integrations.d/` and for Windows it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
 
-## Getting Started
->[Simple steps to start working with the software similar to a "Hello World"]
-
-### Assign values to the following environment variables:
+### Required Environment Variables
 
 - `NEWRELIC_SNOWFLAKE_HOME` - the directory where you installed this integration i.e. `/home/user/newrelic-snowflake-integration`
 - `SNOWSQL_ACCOUNT` - your snowflake account name
@@ -28,16 +27,45 @@ New Relic integration with Snowflake to monitor query performance, logins, poten
 For example on Mac OS/Linux do `export SNOWSQL_ACCOUNT=ab123.west-europe.azure`
 On Windows do `set SNOWSQL_ACCOUNT=abc123.west-europe.azure`
 
+## Getting Started
+This integration requires the New Relic Infrastructure Agent. Follow the installation instructions above.
+
+### When the agent is running as a systemd service
+
+The integration relies on reading environment variables to connect to Snowflake. When the infrastructure agent runs as a systemd service, it doesn't have access to the environment variables of the user. To pass the environment variables correctly, you need to create a `.env` file.
+
+1. Copy the `snowflake.env` file to a location on your server.
+2. Replace the values in `snowflake.env`
+3. Edit the `newrelic-infra.service` service definition - `sudo nano /etc/systemd/system/newrelic-infra.service`
+4. Add a line `EnvironmentFile=/path/to/env/file` in the `[Service]` section
+
+The `.service` file should look similar to below
+
+```
+...
+
+[Service]
+RuntimeDirectory=newrelic-infra
+Type=simple
+EnvironmentFile=/home/ec2-user/snowflake.env
+ExecStart=/usr/bin/newrelic-infra-service
+MemoryLimit=1G
+# MemoryMax is only supported in systemd > 230 and replaces MemoryLimit. Some cloud dists do not have that version
+# MemoryMax=1G
+Restart=always
+RestartSec=20
+StartLimitInterval=0
+StartLimitBurst=5
+PIDFile=/var/run/newrelic-infra/newrelic-infra.pid
+
+...
+```
+
 ## Usage
->[**Optional** - Include more thorough instructions on how to use the software. This section might not be needed if the Getting Started section is enough. Remove this section if it's not needed.]
+This integration comes out of the box with queries to capture a good range of performance related data from the ACCOUNT_USAGE schema. If you want to extend the integration to run custom queries, see the instructions below
 
-## Building
-
->[**Optional** - Include this section if users will need to follow specific instructions to build the software from source. Be sure to include any third party build dependencies that need to be installed separately. Remove this section if it's not needed.]
-
-## Testing
-
->[**Optional** - Include instructions on how to run tests if we include tests with the codebase. Remove this section if it's not needed.]
+### Adding custom queries
+TBD
 
 ## Support
 
