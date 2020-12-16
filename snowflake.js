@@ -6,8 +6,6 @@ const sqlFileName = process.argv[2];
 const account = process.env.SNOWSQL_ACCOUNT;
 const user = process.env.SNOWSQL_USER;
 const password = process.env.SNOWSQL_PWD;
-const database = process.env.SNOWSQL_DB;
-const schema = process.env.SNOWSQL_SCHEMA;
 const role = process.env.SNOWSQL_ROLE || "accountadmin";
 
 const isDate = (date) => {
@@ -18,8 +16,6 @@ const connection = snowflake.createConnection({
   account: account,
   username: user,
   password: password,
-  // database: database,
-  // schema: schema,
   role: role
 });
 

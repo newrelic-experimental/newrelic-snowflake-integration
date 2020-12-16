@@ -3,6 +3,7 @@ node_modules
 
 # ide
 .idea
+.DS_Store
 
 #environment secrets
 env.sh

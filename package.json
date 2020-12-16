@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "newrelic snowflake integration",
   "main": "snowflake.js",
+  "bin": "snowflake.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +25,8 @@
   "homepage": "https://github.com/newrelic/newrelic-snowflake-integration#readme",
   "dependencies": {
     "snowflake-sdk": "^1.5.3"
+  },
+  "devDependencies": {
+    "pkg": "^4.4.9"
   }
 }
