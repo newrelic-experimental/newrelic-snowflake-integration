@@ -5,7 +5,7 @@
   "main": "snowflake.js",
   "bin": "snowflake.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pkg:linux": "npx pkg . --targets node12-linux-x64 --output ./pkgs/node12-linux-x64"
   },
   "repository": {
     "type": "git",

@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
-      - run: npm pkg . --targets node12-linux-x64 --output ./pkgs/node12-linux-x64
+      - run: npm run pkg:linux
       - name: Create Linux Release
         id: create_linux_release
         uses: actions/create-release@v1
