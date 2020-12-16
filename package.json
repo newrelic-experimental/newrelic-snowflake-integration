@@ -1,6 +1,6 @@
 {
   "name": "snowflakeintegration",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "newrelic snowflake integration",
   "main": "snowflake.js",
   "bin": "snowflake.js",
