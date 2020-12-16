@@ -16,9 +16,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm install
-      - run: npm run pkg:linux
-      - run: npm run pkg:mac
-      - run: npm run pkg:win
+      - run: npm run pkg:run
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -36,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./pkgs/snowflakeintegration-linux
+          asset_path: ./snowflakeintegration-linux
           asset_name: snowflakeintegration-linux
           asset_content_type: application/x-executable
       - name: Upload Mac Release Asset
@@ -46,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./pkgs/snowflakeintegration-macos
+          asset_path: ./snowflakeintegration-macos
           asset_name: snowflakeintegration-macos
           asset_content_type: application/x-mach-binary
       - name: Upload Win Release Asset
@@ -56,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./pkgs/snowflakeintegration-win.exe
+          asset_path: ./snowflakeintegration-win.exe
           asset_name: snowflakeintegration-win.exe
           asset_content_type: application/x-dosexec

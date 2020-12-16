@@ -5,9 +5,7 @@
   "main": "snowflake.js",
   "bin": "snowflake.js",
   "scripts": {
-    "pkg:linux": "npx pkg . --targets node12-linux-x64 --output ./pkgs/snowflakeintegration-linux",
-    "pkg:mac": "npx pkg . --targets node12-macos-x64 --output ./pkgs/snowflakeintegration-macos",
-    "pkg:win": "npx pkg . --targets node12-win-x64 --output ./pkgs/snowflakeintegration-win"
+    "pkg:run": "npx pkg ."
   },
   "repository": {
     "type": "git",
