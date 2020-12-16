@@ -8,9 +8,11 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
 
 1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
 2. Download the relevant binary for your platform from `releases` and place it somewhere on the host running New Relic infra agent
-3. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
-4. If running the New Relic infrastructure agent as a systemd service, follow these [additional steps](#when-the-agent-is-running-as-a-systemd-service)
-5. Copy `flex-snowflake.yml` to the agent's `integrations.d` folder. For linux it is found at `/etc/newrelic-infra/integrations.d/` and for Windows it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
+3. Clone the repository to your machine `git clone https://github.com/newrelic/newrelic-snowflake-integration.git`
+4. Copy the `queries` directory and put it in the same folder as the executable binary
+5. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
+6. If running the New Relic infrastructure agent as a systemd service, follow these [additional steps](#when-the-agent-is-running-as-a-systemd-service)
+7. Copy `flex-snowflake.yml` to the agent's `integrations.d` folder. For linux it is found at `/etc/newrelic-infra/integrations.d/` and for Windows it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
 
 ### Required Environment Variables
 
@@ -19,8 +21,6 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
   - for example for Azure snowflake instance ab123.west-europe.azure
 - `SNOWSQL_USER` - your snowflake username (used for logging into the account)
 - `SNOWSQL_PWD` - your snowflake password
-- `SNOWSQL_DB` - snowflake DB name you want to run queries against
-- `SNOWSQL_SCHEMA` - snowflake schema you want to use (e.g. account-usage)
 - `SNOWSQL_ROLE` - snowflake role that should be used when querying (must have access to account_usage and information_schema)
 - `SNOWSQL_WAREHOUSE` - the snowflake warehouse you want to connect to
 

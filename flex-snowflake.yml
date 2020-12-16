@@ -4,10 +4,9 @@ integrations:
     interval: 3600s
     config:
       name: snowflake
-      global:
-        custom_attributes:
-          environment: production
-          snowflakeAccount: $$SNOWSQL_ACCOUNT
+      custom_attributes:
+        environment: production
+        snowflakeAccount: $$SNOWSQL_ACCOUNT
       apis:
         - name: snowflakeAccountMetering
           event_type: SnowflakeAccount
