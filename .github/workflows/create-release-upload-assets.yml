@@ -36,7 +36,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./snowflakeintegration-linux
           asset_name: snowflakeintegration-linux
-          asset_content_type: application/x-executable
+          asset_content_type: application/octet-stream
       - name: Upload Mac Release Asset
         id: upload-mac-release-asset
         uses: actions/upload-release-asset@v1
@@ -46,7 +46,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./snowflakeintegration-macos
           asset_name: snowflakeintegration-macos
-          asset_content_type: application/x-mach-binary
+          asset_content_type: application/octet-stream
       - name: Upload Win Release Asset
         id: upload-win-release-asset
         uses: actions/upload-release-asset@v1
@@ -56,4 +56,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./snowflakeintegration-win.exe
           asset_name: snowflakeintegration-win.exe
-          asset_content_type: application/x-dosexec
+          asset_content_type: application/octet-stream
