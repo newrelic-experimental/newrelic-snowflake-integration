@@ -1,6 +1,6 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# [New Relic Snowflake Integration] [build badges go here when available]
+# New Relic Snowflake Integration
 
 A New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting. 
 
@@ -39,7 +39,7 @@ The integration relies on reading environment variables to connect to Snowflake.
 3. Edit the `newrelic-infra.service` service definition - `sudo nano /etc/systemd/system/newrelic-infra.service`
 4. Add a line `EnvironmentFile=/path/to/env/file` in the `[Service]` section
 
-The `.service` file should look similar to below
+The `newrelic-infra.service` file should look similar to below
 
 ```
 ...
@@ -65,7 +65,22 @@ PIDFile=/var/run/newrelic-infra/newrelic-infra.pid
 This integration comes out of the box with queries to capture a good range of performance related data from the ACCOUNT_USAGE schema. If you want to extend the integration to run custom queries, see the instructions below
 
 ### Adding custom queries
-TBD
+
+To add your own custom query, you need to follow a few steps
+
+1. When creating your query, use the existing query files for guidance. The `FROM` clause needs to be fully qualified, for example you need to specify the Database, Schema and Table. For example, `"DATABASE"."SCHEMA"."TABLE/VIEW"`
+2. Add your `custom-query.sql` query file to the queries directory
+3. Add a new section for the `flex-snowflake.yml` file, like so
+
+```
+---
+- name: snowflakeMyCustomQuery
+ event_type: SnowflakeAccount
+ custom_attributes:
+   metric_type: snowflake.my_custom_query
+ commands:
+   - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/custom_query.sql
+```
 
 ## Support
 
