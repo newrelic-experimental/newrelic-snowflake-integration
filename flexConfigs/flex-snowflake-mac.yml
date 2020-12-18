@@ -5,6 +5,7 @@ integrations:
     config:
       name: snowflake
       custom_attributes:
+        entity_synthesis_type: snowflake
         environment: production
         snowflakeAccount: $$SNOWSQL_ACCOUNT
       apis:
