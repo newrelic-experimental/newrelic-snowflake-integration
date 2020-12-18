@@ -12,7 +12,9 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
 4. Copy the `queries` directory and put it in the same folder as the executable binary
 5. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
 6. If running the New Relic infrastructure agent as a systemd service, follow these [additional steps](#when-the-agent-is-running-as-a-systemd-service)
-7. Copy `flex-snowflake.yml` to the agent's `integrations.d` folder. For linux it is found at `/etc/newrelic-infra/integrations.d/` and for Windows it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
+7. Copy `flex-snowflake.yml` to the agent's `integrations.d` folder. 
+    - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
+    - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
 
 ### Required Environment Variables
 

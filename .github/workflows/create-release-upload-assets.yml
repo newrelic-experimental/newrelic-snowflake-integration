@@ -1,0 +1,59 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+name: Create release & upload assets
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Packages
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm run pkg:run
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Linux Release Asset
+        id: upload-linux-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./snowflakeintegration-linux
+          asset_name: snowflakeintegration-linux
+          asset_content_type: application/octet-stream
+      - name: Upload Mac Release Asset
+        id: upload-mac-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./snowflakeintegration-macos
+          asset_name: snowflakeintegration-macos
+          asset_content_type: application/octet-stream
+      - name: Upload Win Release Asset
+        id: upload-win-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./snowflakeintegration-win.exe
+          asset_name: snowflakeintegration-win.exe
+          asset_content_type: application/octet-stream
