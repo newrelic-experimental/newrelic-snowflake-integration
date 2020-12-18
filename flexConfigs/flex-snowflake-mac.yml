@@ -7,6 +7,8 @@ integrations:
       custom_attributes:
         environment: production
         snowflakeAccount: $$SNOWSQL_ACCOUNT
+      global:
+        timeout: 120000
       apis:
         - name: snowflakeAccountMetering
           event_type: SnowflakeAccount
