@@ -7,7 +7,7 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
 ## Installation
 
 1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
-2. Download the relevant binary for your platform from `releases` and place it somewhere on the host running New Relic infra agent
+2. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it somewhere on the host running New Relic infra agent
 3. Clone the repository to your machine `git clone https://github.com/newrelic/newrelic-snowflake-integration.git`
 4. Copy the `queries` directory and put it in the same folder as the executable binary
 5. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
