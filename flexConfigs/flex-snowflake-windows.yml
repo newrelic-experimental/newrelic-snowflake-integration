@@ -14,63 +14,54 @@ integrations:
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.billing
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql
         - name: snowflakeAutomaticClusteringUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.automatic_clustering
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/automatic_clustering_usage.sql
         - name: snowflakeDataTransferUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.data_transfer
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/data_transfer_usage.sql
         - name: snowflakeDatabaseStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.database_storage
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/database_storage_usage.sql
         - name: snowflakeFailedLogins
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.failed_logins
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/failed_logins.sql
         - name: snowflakePipeUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.pipe_usage
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/pipe_usage.sql
         - name: snowflakeReplicationUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.replication_usage
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/replication_usage.sql
         - name: snowflakeStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.storage_usage
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/storage_usage.sql
         - name: snowflakeTableStorageUsage
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.table_storage_usage
-            entity_synthesis_type: snowflake_account
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/table_storage_usage.sql
         # Query History emits under a different event type - SnowflakeVirtualWarehouse
@@ -79,7 +70,6 @@ integrations:
           event_type: SnowflakeVirtualWarehouse
           custom_attributes:
             metric_type: snowflake.query_performance
-            entity_synthesis_type: snowflake_warehouse
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql
         # Warehouse Load History emits under a different event type - SnowflakeVirtualWarehouse
@@ -88,7 +78,6 @@ integrations:
           event_type: SnowflakeVirtualWarehouse
           custom_attributes:
             metric_type: snowflake.warehouse_performance
-            entity_synthesis_type: snowflake_warehouse
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_load_history.sql
         # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
@@ -97,6 +86,5 @@ integrations:
           event_type: SnowflakeVirtualWarehouse
           custom_attributes:
             metric_type: snowflake.billing
-            entity_synthesis_type: snowflake_warehouse
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-win.exe $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_metering.sql
