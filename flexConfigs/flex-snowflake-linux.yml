@@ -34,12 +34,12 @@ integrations:
             metric_type: snowflake.database_storage
           commands:
             - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/queries/database_storage_usage.sql
-        - name: snowflakeFailedLogins
+        - name: snowflakeLoginHistory
           event_type: SnowflakeAccount
           custom_attributes:
-            metric_type: snowflake.failed_logins
+            metric_type: snowflake.login_history
           commands:
-            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/queries/failed_logins.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/queries/login_history.sql
         - name: snowflakePipeUsage
           event_type: SnowflakeAccount
           custom_attributes:
