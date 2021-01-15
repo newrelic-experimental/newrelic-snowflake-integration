@@ -83,7 +83,7 @@ To add your own custom query, you need to follow a few steps
  custom_attributes:
    metric_type: snowflake.my_custom_query
  commands:
-   - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" node $$NEWRELIC_SNOWFLAKE_HOME/snowflake.js $$NEWRELIC_SNOWFLAKE_HOME/queries/custom_query.sql
+   - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-<platform> $$NEWRELIC_SNOWFLAKE_HOME/queries/custom_query.sql
 ```
 
 ## Support
