@@ -11,10 +11,10 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
 3. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it somewhere on the host running New Relic infra agent
 4. Make sure the binary is executable `chmod +x snowflakeintegration_linux`
 5. Copy the `queries` directory and put it in the same folder as the executable binary
-6. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section.
-7. If running the New Relic infrastructure agent as a systemd service, follow these [additional steps](#when-the-agent-is-running-as-a-systemd-service)
+6. If running the New Relic infrastructure agent as a systemd service, follow these [steps to set environment variables](#when-the-agent-is-running-as-a-systemd-service)
    1. To determine if you are on a system using `systemd` as the init service, run
    ``[[ `\systemctl` =~ -\.mount ]] && echo yes || echo no``
+7. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section. (Skip this step if you did the step above).
 8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder. 
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
