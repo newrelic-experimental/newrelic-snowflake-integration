@@ -31,9 +31,6 @@ A New Relic integration with Snowflake to monitor query performance, logins, pot
 For example on Mac OS/Linux do `export SNOWSQL_ACCOUNT=ab123.west-europe.azure`
 On Windows do `set SNOWSQL_ACCOUNT=abc123.west-europe.azure`
 
-## Getting Started
-This integration requires the New Relic Infrastructure Agent. Follow the installation instructions above.
-
 ### When the agent is running as a systemd service
 
 The integration relies on reading environment variables to connect to Snowflake. When the infrastructure agent runs as a systemd service, it doesn't have access to the environment variables of the user. To pass the environment variables correctly, you need to create a `.env` file.
@@ -42,6 +39,7 @@ The integration relies on reading environment variables to connect to Snowflake.
 2. Replace the values in `snowflake.env`
 3. Edit the `newrelic-infra.service` service definition - `sudo nano /etc/systemd/system/newrelic-infra.service`
 4. Add a line `EnvironmentFile=/path/to/env/file` in the `[Service]` section
+5. Perform a daemon-reload and restart the newrelic-infra service - `sudo systemctl daemon-reload && sudo systemctl restart newrelic-infra`
 
 The `newrelic-infra.service` file should look similar to below
 
