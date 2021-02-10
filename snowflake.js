@@ -38,12 +38,12 @@ connection.execute({
       rows.forEach((row) => {
         for(let key in row) {
           if(isDate(row[key])) {
-            row[key] = row[key] + "";
+            rows[key] = row[key] + "";
           }
         }
-        //out the data to the console
-        console.log(JSON.stringify(row));
       });
+      //out the data to the console
+      console.log(JSON.stringify(rows));
     }
   }
 });
