@@ -1,0 +1,10 @@
+authentication:
+  use_environment_variables: false
+  obfuscation:
+    enabled: true
+    key: replaceme
+credentials:
+  account: replaceme
+  user: replaceme
+  password: replaceme
+  role: replaceme
