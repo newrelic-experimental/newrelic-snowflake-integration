@@ -21,6 +21,7 @@ try {
   console.log(config);
 } catch (error) {
   console.error('Error parsing config.yaml file, make sure its a valid yaml file', error);
+  process.exit(0);
 }
 
 let account = '';
