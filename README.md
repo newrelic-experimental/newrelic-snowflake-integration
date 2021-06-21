@@ -2,38 +2,58 @@
 
 # New Relic Snowflake Integration
 
-A New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting. 
+A New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting.
+
+## Configuration options
+Configuration is driven by the `config.yaml` in the root directory of the integration. 
+
+### Authentication
+
+`obfuscation` : Takes two properties, `enabled`: `true` or `false` and `key`: the string you used as the key
+when obfuscating using the New Relic CLI. [Read the docs](https://github.com/newrelic/newrelic-cli/blob/main/docs/cli/newrelic_agent_config_obfuscate.md) on how to use the obfuscation feature.
+
+### Credentials
+
+Credential values must be supplied for `account`, `user`, `password` & `role` as plain-text strings, 
+unless obfuscation is enabled in which case supply the obfuscated string values for each property.
+
+```
+authentication:
+  obfuscation: # required
+    enabled: true || false
+    key: key # the key you used to obfuscate using newrelic CLI
+credentials: # required
+  account: replaceme
+  user: replaceme
+  password: replaceme
+  role: replaceme
+```
 
 ## Installation
 
 1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
 2. Clone the repository to your machine `git clone https://github.com/newrelic/newrelic-snowflake-integration.git`
 3. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it somewhere on the host running New Relic infra agent
-4. Make sure the binary is executable `chmod +x snowflakeintegration_linux`
+4. Make sure the binary is executable `chmod +x snowflakeintegration-linux`
 5. Copy the `queries` directory and put it in the same folder as the executable binary
-6. If running the New Relic infrastructure agent as a systemd service, follow these [steps to set environment variables](#when-the-agent-is-running-as-a-systemd-service)
+6. If running the New Relic infrastructure agent as a systemd service, follow these [steps to set the environment variable](#when-the-agent-is-running-as-a-systemd-service)
    1. To determine if you are on a system using `systemd` as the init service, run
    ``[[ `\systemctl` =~ -\.mount ]] && echo yes || echo no``
-7. Set the environment variables as documented in the [Required Environment Variables](#required-environment-variables) section. (Skip this step if you did the step above).
+7. Set the `NEWRELIC_SNOWFLAKE_HOME` environment variable as documented in the [Setting NEWRELIC_SNOWFLAKE_HOME](#required-environment-variables) section. (Skip this step if you did the step above).
 8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder. 
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
 
-### Required Environment Variables
+### Setting NEWRELIC_SNOWFLAKE_HOME
 
 - `NEWRELIC_SNOWFLAKE_HOME` - the directory where you installed this integration i.e. `/home/user/newrelic-snowflake-integration`
-- `SNOWSQL_ACCOUNT` - your snowflake account name
-  - for example for Azure snowflake instance ab123.west-europe.azure
-- `SNOWSQL_USER` - your snowflake username (used for logging into the account)
-- `SNOWSQL_PWD` - your snowflake password
-- `SNOWSQL_ROLE` - snowflake role that should be used when querying (must have access to account_usage and information_schema)
 
-For example on Mac OS/Linux do `export SNOWSQL_ACCOUNT=ab123.west-europe.azure`
-On Windows, set System Environment variables via the Control Panel or from an Administrator command prompt (`setx /m SNOWSQL_ACCOUNT ab123.west-europe.azure`).
+For example on Mac OS/Linux do `export NEWRELIC_SNOWFLAKE_HOME=/home/myuser/newrelic-snowflake-integration`
+On Windows, set System Environment variables via the Control Panel or from an Administrator command prompt (`setx /m NEWRELIC_SNOWFLAKE_HOME C:\newrelic-snowflake-integration\`). If you are running on a Linux system that uses Systemd, see below.
 
 ### When the agent is running as a systemd service
 
-The integration relies on reading environment variables to connect to Snowflake. When the infrastructure agent runs as a systemd service, it doesn't have access to the environment variables of the user. To pass the environment variables correctly, you need to create a `.env` file.
+The integration relies on `NEWRELIC_SNOWFLAKE_HOME` environment variable to connect to Snowflake. When the infrastructure agent runs as a systemd service, it doesn't have access to the environment variables of the user. To pass the environment variables correctly, you need to create a `.env` file.
 
 1. Copy the `snowflake.env` file to a location on your server.
 2. Replace the values in `snowflake.env`

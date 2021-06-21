@@ -28,13 +28,7 @@ let user = '';
 let password = '';
 let role = '';
 
-// if the user has elected to supply auth by env vars
-if (config.authentication.use_environment_variables === true) {
-  account = process.env.SNOWSQL_ACCOUNT;
-  user = process.env.SNOWSQL_USER;
-  password = process.env.SNOWSQL_PWD;
-  role = process.env.SNOWSQL_ROLE || "accountadmin";
-} else if(config.authentication.obfuscation.enabled === false && config.credentials != null) {
+if(config.authentication.obfuscation.enabled === false && config.credentials != null) {
   // if the user has elected to use regular credentials in the config file
   account = config.credentials.account
   user = config.credentials.user;
