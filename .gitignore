@@ -7,4 +7,3 @@ node_modules
 
 #environment secrets
 env.sh
-snowflake.env
