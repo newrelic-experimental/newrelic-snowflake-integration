@@ -5,7 +5,6 @@ const YAML = require('yaml')
 const deobfuscate = require('./encoding');
 
 const sqlFileName = process.argv[2];
-// const config = require('process');
 
 // Read the config file
 let file = null;
