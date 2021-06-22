@@ -11,10 +11,10 @@ const sqlFileName = process.argv[2];
 let file = null;
 let config = null;
 try {
-  let filePath = path.normalize('./config.yaml');
+  let filePath = path.normalize('config.yaml');
   file = fs.readFileSync(filePath, 'utf8')
 } catch (error) {
-  console.error('Error reading config.yml file ', error);
+  console.error('Error reading config.yaml file ', error);
   process.exit(0);
 }
 try {
