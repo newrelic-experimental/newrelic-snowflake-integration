@@ -1,5 +1,6 @@
 const snowflake = require('snowflake-sdk');
 const fs = require('fs');
+const path = require('path');
 const YAML = require('yaml')
 
 const deobfuscate = require('./encoding');
@@ -10,14 +11,14 @@ const sqlFileName = process.argv[2];
 let file = null;
 let config = null;
 try {
-  file = fs.readFileSync('./config.yaml', 'utf8')
+  let filePath = path.normalize('./config.yaml');
+  file = fs.readFileSync(filePath, 'utf8')
 } catch (error) {
   console.error('Error reading config.yml file ', error);
   process.exit(0);
 }
 try {
   config = YAML.parse(file);
-  console.log(config);
 } catch (error) {
   console.error('Error parsing config.yaml file, make sure its a valid yaml file', error);
   process.exit(0);
@@ -57,7 +58,7 @@ const connection = snowflake.createConnection({
 connection.connect(
   function (err) {
     if (err) {
-      console.error(`Unable to connect: ${err.message}`);
+      console.error(`Unable to connect to snowflake: ${err.message}`);
     }
   }
 );
