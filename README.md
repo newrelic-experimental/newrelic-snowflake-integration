@@ -33,9 +33,9 @@ credentials: # required
 
 1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
 2. Clone the repository to your machine `git clone https://github.com/newrelic/newrelic-snowflake-integration.git`
-3. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it somewhere on the host running New Relic infra agent
+3. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it in the cloned repo from step 2.
 4. Make sure the binary is executable `chmod +x snowflakeintegration-linux`
-5. Copy the `queries` directory and put it in the same folder as the executable binary
+5. Open `config.yaml` file and fill it appropriately
 6. If running the New Relic infrastructure agent as a systemd service, follow these [steps to set the environment variable](#when-the-agent-is-running-as-a-systemd-service)
    1. To determine if you are on a system using `systemd` as the init service, run
    ``[[ `\systemctl` =~ -\.mount ]] && echo yes || echo no``
