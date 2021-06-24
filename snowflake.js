@@ -5,14 +5,19 @@ const YAML = require('yaml')
 
 const deobfuscate = require('./encoding');
 
-const sqlFileName = process.argv[2];
+let configFilePath = process.argv[2];
+const sqlFileName = process.argv[3];
 
 // Read the config file
 let file = null;
 let config = null;
+
+// allow overrride of config file
+if(process.env.NEWRELIC_SNOWFLAKE_CONFIG_FILE != null) {
+  configFilePath = process.env.NEWRELIC_SNOWFLAKE_CONFIG_FILE;
+}
 try {
-  let filePath = path.normalize('config.yaml');
-  file = fs.readFileSync(filePath, 'utf8')
+  file = fs.readFileSync(configFilePath, 'utf8')
 } catch (error) {
   console.error('Error reading config.yaml file ', error);
   process.exit(0);
@@ -28,32 +33,45 @@ let account = '';
 let user = '';
 let password = '';
 let role = '';
+let useKeyPairAuth = false;
 
-if(config.authentication.obfuscation.enabled === false && config.credentials != null) {
+if (config.authentication != null) {
+
+  if(config.authentication.obfuscation != null) {
+    if (config.authentication.obfuscation.key != null && config.credentials != null) {
+      // the user has elected to use obfuscated credentials in the config file
+      const key = config.authentication.obfuscation.key;
+      account = deobfuscate(config.credentials.account, key);
+      user = deobfuscate(config.credentials.user, key);
+      password = deobfuscate(config.credentials.password, key);
+      role = deobfuscate(config.credentials.role, key);
+    }
+  }
+
+} else if (config.credentials != null) {
   // if the user has elected to use regular credentials in the config file
   account = config.credentials.account
   user = config.credentials.user;
   password = config.credentials.password;
   role = config.credentials.role;
-} else if(config.authentication.obfuscation.enabled === true && config.credentials != null) {
-  // if the user has elected to use obfuscated credentials in the config file
-  const key = config.authentication.obfuscation.key;
-  account = deobfuscate(config.credentials.account, key);
-  user = deobfuscate(config.credentials.user, key);
-  password = deobfuscate(config.credentials.password, key);
-  role = deobfuscate(config.credentials.role, key);
 }
 
 const isDate = (date) => {
   return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
 }
 
-const connection = snowflake.createConnection({
-  account: account,
-  username: user,
-  password: password,
-  role: role
-});
+// Use Key Pair authentication or regular ol' user/pass to connect to Snowflake
+let connection = null;
+if (useKeyPairAuth) {
+  // implement key pair auth
+} else {
+  connection = snowflake.createConnection({
+    account: account,
+    username: user,
+    password: password,
+    role: role
+  });
+}
 
 connection.connect(
   function (err) {

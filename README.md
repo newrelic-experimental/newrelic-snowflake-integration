@@ -18,9 +18,8 @@ Credential values must be supplied for `account`, `user`, `password` & `role` as
 unless obfuscation is enabled in which case supply the obfuscated string values for each property.
 
 ```
-authentication:
-  obfuscation: # required
-    enabled: true || false
+authentication: # optional
+  obfuscation: # optional
     key: key # the key you used to obfuscate using newrelic CLI
 credentials: # required
   account: replaceme
@@ -46,7 +45,8 @@ credentials: # required
 
 ### Setting NEWRELIC_SNOWFLAKE_HOME
 
-- `NEWRELIC_SNOWFLAKE_HOME` - the directory where you installed this integration i.e. `/home/user/newrelic-snowflake-integration`
+- `NEWRELIC_SNOWFLAKE_HOME` - *REQUIRED* the directory where you installed this integration i.e. `/home/user/newrelic-snowflake-integration`
+- `NEWRELIC_SNOWFLAKE_CONFIG_PATH` - *OPTIONAL* the fully qualified path to the config file i.e. `/home/user/config.yaml` or `C:\User\config.yaml`
 
 For example on Mac OS/Linux do `export NEWRELIC_SNOWFLAKE_HOME=/home/myuser/newrelic-snowflake-integration`
 On Windows, set System Environment variables via the Control Panel or from an Administrator command prompt (`setx /m NEWRELIC_SNOWFLAKE_HOME C:\newrelic-snowflake-integration\`). If you are running on a Linux system that uses Systemd, see below.

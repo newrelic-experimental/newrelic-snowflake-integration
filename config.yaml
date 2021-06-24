@@ -1,6 +1,5 @@
 authentication:
-  obfuscation:
-    enabled: true
+  obfuscation: # optional
     key: replaceme
 credentials:
   account: replaceme
