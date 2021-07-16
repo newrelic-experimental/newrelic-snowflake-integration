@@ -14,8 +14,9 @@ when obfuscating using the New Relic CLI. [Read the docs](https://github.com/new
 
 ### Credentials
 
-Credential values must be supplied for `account`, `user`, `password` & `role` as plain-text strings, 
+Credential values must be supplied for `account` (your Snowflake account identifier in the format `<account_locator>.<region_id>` or `<account_locator>.<region_id>.<cloud>` e.g. `xy12345.us-east-2`), `user`, `password` & `role` as plain-text strings, 
 unless obfuscation is enabled in which case supply the obfuscated string values for each property.
+
 
 ```
 authentication: # optional
@@ -39,7 +40,7 @@ credentials: # required
 6. If running the New Relic infrastructure agent as a systemd service, follow these [steps to set the environment variable](#when-the-agent-is-running-as-a-systemd-service)
    1. To determine if you are on a system using `systemd` as the init service, run
    ``[[ `\systemctl` =~ -\.mount ]] && echo yes || echo no``
-7. Set the `NEWRELIC_SNOWFLAKE_HOME` environment variable as documented in the [Setting NEWRELIC_SNOWFLAKE_HOME](#required-environment-variables) section. (Skip this step if you did the step above).
+7. Set the `NEWRELIC_SNOWFLAKE_HOME` environment variable as documented in the [Setting NEWRELIC_SNOWFLAKE_HOME](#required-environment-variables) section. (Skip this step if you are running the New Relic infrastructure agent as a systemd service and followed the alternative steps for this).
 8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder. 
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
