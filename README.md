@@ -26,6 +26,7 @@ credentials: # required
   user: replaceme
   password: replaceme
   role: replaceme
+  warehouse: replaceme
 ```
 
 ## Installation

@@ -33,6 +33,7 @@ let account = '';
 let user = '';
 let password = '';
 let role = '';
+let warehouse = '';
 let useKeyPairAuth = false;
 
 if (config.authentication != null) {
@@ -45,6 +46,7 @@ if (config.authentication != null) {
       user = deobfuscate(config.credentials.user, key);
       password = deobfuscate(config.credentials.password, key);
       role = deobfuscate(config.credentials.role, key);
+      warehouse = deobfuscate(config.credentials.warehouse, key);
     }
   }
 
@@ -54,6 +56,10 @@ if (config.authentication != null) {
   user = config.credentials.user;
   password = config.credentials.password;
   role = config.credentials.role;
+  warehouse = config.credentials.warehouse;
+} else {
+  console.error('Invalid YAML file, please check format and try again');
+  process.exit(0);
 }
 
 const isDate = (date) => {
@@ -69,7 +75,8 @@ if (useKeyPairAuth) {
     account: account,
     username: user,
     password: password,
-    role: role
+    role: role,
+    warehouse: warehouse
   });
 }
 
