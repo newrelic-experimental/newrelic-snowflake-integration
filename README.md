@@ -19,9 +19,10 @@ unless obfuscation is enabled in which case supply the obfuscated string values 
 
 
 ```
-authentication: # optional
-  obfuscation: # optional
-    key: key # the key you used to obfuscate using newrelic CLI
+# optional
+# authentication:
+#  obfuscation:
+#    key: key # the key you used to obfuscate using newrelic CLI
 credentials: # required
   account: replaceme
   user: replaceme
