@@ -2,8 +2,10 @@ authentication:
   obfuscation: # optional
     key: replaceme
 credentials:
+  useKeyPairAuth: false
   account: replaceme
   user: replaceme
   password: replaceme
   role: replaceme
   warehouse: replaceme
+  privateKey: replaceme

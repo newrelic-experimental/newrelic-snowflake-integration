@@ -15,7 +15,7 @@ when obfuscating using the New Relic CLI. [Read the docs](https://github.com/new
 ### Credentials
 
 Credential values must be supplied for `account` (your Snowflake account identifier in the format `<account_locator>.<region_id>` or `<account_locator>.<region_id>.<cloud>` e.g. `xy12345.us-east-2`), `user`, `password` & `role` as plain-text strings, 
-unless obfuscation is enabled in which case supply the obfuscated string values for each property.
+unless obfuscation is enabled in which case supply the obfuscated string values for each property. `privateKey` must be supplied but can be kept as an empty string if useKeyPairAuth equals false, otherwise, `user` and `password` will be ignored and the private key used instead on connection handshake.
 
 
 ```
@@ -24,11 +24,13 @@ unless obfuscation is enabled in which case supply the obfuscated string values 
 #  obfuscation:
 #    key: key # the key you used to obfuscate using newrelic CLI
 credentials: # required
+  useKeyPairAuth: false
   account: replaceme
   user: replaceme
   password: replaceme
   role: replaceme
   warehouse: replaceme
+  privateKey: replaceme
 ```
 
 ## Installation
