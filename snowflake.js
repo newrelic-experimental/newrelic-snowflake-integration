@@ -75,8 +75,11 @@ const isDate = (date) => {
 let connection = null;
 if (useKeyPairAuth) {
   connection = snowflake.createConnection({
+    account: account,
     authenticator: "SNOWFLAKE_JWT",
-    privateKey: privateKey
+    privateKey: privateKey,
+    role: role,
+    warehouse: warehouse
   });
   // implement key pair auth
 } else {
