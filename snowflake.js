@@ -35,6 +35,7 @@ let password = '';
 let role = '';
 let warehouse = '';
 let useKeyPairAuth = false;
+let privateKey = '';
 
 if (config.authentication != null) {
 
@@ -47,6 +48,8 @@ if (config.authentication != null) {
       password = deobfuscate(config.credentials.password, key);
       role = deobfuscate(config.credentials.role, key);
       warehouse = deobfuscate(config.credentials.warehouse, key);
+      useKeyPairAuth = deobfuscate(config.credentials.useKeyPairAuth, key);
+      privateKey = deobfuscate(config.credentials.privateKey, key);
     }
   }
 
@@ -57,6 +60,8 @@ if (config.authentication != null) {
   password = config.credentials.password;
   role = config.credentials.role;
   warehouse = config.credentials.warehouse;
+  useKeyPairAuth = config.credentials.useKeyPairAuth;
+  privateKey = config.credentials.privateKey;
 } else {
   console.error('Invalid YAML file, please check format and try again');
   process.exit(0);
@@ -69,6 +74,13 @@ const isDate = (date) => {
 // Use Key Pair authentication or regular ol' user/pass to connect to Snowflake
 let connection = null;
 if (useKeyPairAuth) {
+  connection = snowflake.createConnection({
+    account: account,
+    authenticator: "SNOWFLAKE_JWT",
+    privateKey: privateKey,
+    role: role,
+    warehouse: warehouse
+  });
   // implement key pair auth
 } else {
   connection = snowflake.createConnection({
