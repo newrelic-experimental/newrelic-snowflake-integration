@@ -48,7 +48,7 @@ if (config.authentication != null) {
       password = deobfuscate(config.credentials.password, key);
       role = deobfuscate(config.credentials.role, key);
       warehouse = deobfuscate(config.credentials.warehouse, key);
-      useKeyPairAuth = deobfuscate(config.credentials.useKeyPairAuth, key);
+      useKeyPairAuth = config.credentials.useKeyPairAuth;
       privateKey = deobfuscate(config.credentials.privateKey, key);
     }
   }
@@ -76,7 +76,9 @@ let connection = null;
 if (useKeyPairAuth) {
   connection = snowflake.createConnection({
     account: account,
-    authenticator: "SNOWFLAKE_JWT",
+    username: user,
+    password: password,
+    authenticator: "snowflake_jwt",
     privateKey: privateKey,
     role: role,
     warehouse: warehouse
