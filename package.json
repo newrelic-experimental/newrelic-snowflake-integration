@@ -25,7 +25,7 @@
   "homepage": "https://github.com/newrelic/newrelic-snowflake-integration#readme",
   "dependencies": {
     "node-vault": "^0.9.21",
-    "snowflake-sdk": "^1.5.3",
+    "snowflake-sdk": "^1.6.7",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
