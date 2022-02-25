@@ -5,7 +5,7 @@
 A New Relic integration with Snowflake to monitor query performance, logins, potential security incidents, optimise warehouse and cloud credit costs, capture any data stored in Snowflake for real-time alerting and reporting.
 
 ## Configuration options
-Configuration is driven by the `config.yaml` in the root directory of the integration. 
+Configuration is driven by the `config.yaml` in the root directory of the integration.
 
 ### Authentication
 
@@ -14,7 +14,7 @@ when obfuscating using the New Relic CLI. [Read the docs](https://github.com/new
 
 ### Credentials
 
-Credential values must be supplied for `account` (your Snowflake account identifier in the format `<account_locator>.<region_id>` or `<account_locator>.<region_id>.<cloud>` e.g. `xy12345.us-east-2`), `user`, `password` & `role` as plain-text strings, 
+Credential values must be supplied for `account` (your Snowflake account identifier in the format `<account_locator>.<region_id>` or `<account_locator>.<region_id>.<cloud>` e.g. `xy12345.us-east-2`), `user`, `password` & `role` as plain-text strings,
 unless obfuscation is enabled in which case supply the obfuscated string values for each property. `privateKey` must be supplied but can be kept as an empty string if useKeyPairAuth equals false, otherwise, `user` and `password` will be ignored and the private key used instead on connection handshake.
 
 
@@ -35,7 +35,7 @@ credentials: # required
 
 ## Installation
 
-1. [Install the New Relic infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
+1. [Install the New Relic Infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
 2. Clone the repository to your machine `git clone https://github.com/newrelic/newrelic-snowflake-integration.git`
 3. Download the [relevant binary for your platform](https://github.com/newrelic/newrelic-snowflake-integration/releases) from `releases` and place it in the cloned repo from step 2.
 4. Make sure the binary is executable `chmod +x snowflakeintegration-linux`
@@ -44,7 +44,7 @@ credentials: # required
    1. To determine if you are on a system using `systemd` as the init service, run
    ``[[ `\systemctl` =~ -\.mount ]] && echo yes || echo no``
 7. Set the `NEWRELIC_SNOWFLAKE_HOME` environment variable as documented in the [Setting NEWRELIC_SNOWFLAKE_HOME](#required-environment-variables) section. (Skip this step if you are running the New Relic infrastructure agent as a systemd service and followed the alternative steps for this).
-8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder. 
+8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder.
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
 
