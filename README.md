@@ -33,6 +33,21 @@ credentials: # required
   privateKey: replaceme
 ```
 
+#### Key Pair Authentication
+In order to setup key pair authentication, two environment variables have to be included in your `yml` configuration file. `useKeyPairAuth` and `privateKeyPath`.
+
+See the example below
+
+```
+credentials:
+  useKeyPairAuth: true
+  privateKeyPath: replaceme
+  account: replaceme
+  username: replaceme
+  role: replaceme
+  warehouse: replaceme
+```
+
 ## Installation
 
 1. [Install the New Relic Infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
