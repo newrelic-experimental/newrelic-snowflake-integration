@@ -101,3 +101,22 @@ integrations:
             metric_type: snowflake.billing
           commands:
             - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_metering.sql
+        # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
+        # since these metrics are related to a particular warehouse.
+        - name: longestQueries
+          entity: snowflake
+          event_type: SnowflakeVirtualWarehouse
+          custom_attributes:
+            metric_type: snowflake.query_performance
+          commands: 
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/longest_queries.sql
+        # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
+        # since these metrics are related to a particular warehouse.
+        - name: CreditUsageByWarehouse
+          entity: snowflake
+          event_type: SnowflakeVirtualWarehouse
+          custom_attributes:
+            metric_type: snowflake.credit_usage_by_warehouse
+          commands: 
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/credit_usage_by_warehouse.sql
+
