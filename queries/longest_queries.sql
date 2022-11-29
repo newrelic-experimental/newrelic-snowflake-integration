@@ -1,14 +1,3 @@
 -- https://docs.snowflake.com/en/sql-reference/account-usage/query_history.html
-select 
-           query_id, 
-           query_text,
-           (execution_time / 60000) as exec_time,
-           warehouse_name,
-           user_name,
-           execution_status
-from 
-          snowflake.account_usage.query_history 
-where 
-           execution_status = 'SUCCESS' 
-order by 
-           execution_time desc;
+select QUERY_ID, QUERY_TEXT,(EXECUTION_TIME / 60000) as EXEC_TIME,WAREHOUSE_NAME,USER_NAME,EXECUTION_STATUS 
+from "SNOWFLAKE"."ACCOUNT_USAGE"."QUERY_HISTORY" where EXECUTION_STATUS = 'SUCCESS' order by EXECUTION_TIME desc;
