@@ -62,6 +62,18 @@ credentials:
 8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder.
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
+**Note:** 
+If you are getting error like,
+ `$$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql`
+`/bin/sh: NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux: No such file or directory.`
+
+- For Linux, /etc/newrelic-infra/integrations.d/flex-snowflake-linux.yml , edit run command
+`- run:<path to downloaded binary file i.e,snowflakeintegration-linux> <path to cloned repository directory/config.yaml> <path to cloned repository directory/queries/”name of the query file”>`
+- For Mac, /etc/newrelic-infra/integrations.d/flex-snowflake-mac.yml,edit run command
+`- run:<path to downloaded binary file i.e,snowflakeintegration-macos> <path to cloned repository directory/config.yaml> <path to cloned repository directory/queries/”name of the query file”>`
+- For Windows, C:\Program Files\New Relic\newrelic-infra\integrations.d\flex-snowflake-windows.yml, edit run command
+`- run:<path to downloaded binary file i.e,snowflakeintegration-win.exe> <path to cloned repository directory\config.yaml> <path to cloned repository directory\queries\”name of the query file”>`
+
 
 ### Setting NEWRELIC_SNOWFLAKE_HOME
 
