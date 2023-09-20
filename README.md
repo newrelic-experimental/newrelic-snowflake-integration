@@ -62,18 +62,6 @@ credentials:
 8. Copy the relevant flex config for your platform from [flexConfigs](https://github.com/newrelic/newrelic-snowflake-integration/tree/main/flexConfigs) to the agent's `integrations.d` folder.
     - for Linux, it is found at `/etc/newrelic-infra/integrations.d/`
     - for Windows, it is found at `C:\Program Files\New Relic\newrelic-infra\integrations.d\`.
-**Note:** 
-If you are getting error like,
- `$$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql`
-`/bin/sh: NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux: No such file or directory.`
-
-- For Linux, /etc/newrelic-infra/integrations.d/flex-snowflake-linux.yml , edit run command
-`- run:<path to downloaded binary file i.e,snowflakeintegration-linux> <path to cloned repository directory/config.yaml> <path to cloned repository directory/queries/”name of the query file”>`
-- For Mac, /etc/newrelic-infra/integrations.d/flex-snowflake-mac.yml,edit run command
-`- run:<path to downloaded binary file i.e,snowflakeintegration-macos> <path to cloned repository directory/config.yaml> <path to cloned repository directory/queries/”name of the query file”>`
-- For Windows, C:\Program Files\New Relic\newrelic-infra\integrations.d\flex-snowflake-windows.yml, edit run command
-`- run:<path to downloaded binary file i.e,snowflakeintegration-win.exe> <path to cloned repository directory\config.yaml> <path to cloned repository directory\queries\”name of the query file”>`
-
 
 ### Setting NEWRELIC_SNOWFLAKE_HOME
 
@@ -91,7 +79,14 @@ The integration relies on `NEWRELIC_SNOWFLAKE_HOME` environment variable to conn
 2. Replace the values in `snowflake.env`
 3. Edit the `newrelic-infra.service` service definition - `sudo nano /etc/systemd/system/newrelic-infra.service`
 4. Add a line `EnvironmentFile=/path/to/env/file` in the `[Service]` section
-5. Perform a daemon-reload and restart the newrelic-infra service - `sudo systemctl daemon-reload && sudo systemctl restart newrelic-infra`
+5. Edit the `newrelic-infra.yml` - `sudo nano /etc/newrelic-infra.yml`
+6. Add these lines in `newrelic-infra.yml`
+   ```
+   passthrough_environment:
+   - NEWRELIC_SNOWFLAKE_HOME
+   - SNOWSQL_ACCOUNT
+   ```
+7. Perform a daemon-reload and restart the newrelic-infra service - `sudo systemctl daemon-reload && sudo systemctl restart newrelic-infra`
 
 The `newrelic-infra.service` file should look similar to below
 
