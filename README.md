@@ -79,7 +79,14 @@ The integration relies on `NEWRELIC_SNOWFLAKE_HOME` environment variable to conn
 2. Replace the values in `snowflake.env`
 3. Edit the `newrelic-infra.service` service definition - `sudo nano /etc/systemd/system/newrelic-infra.service`
 4. Add a line `EnvironmentFile=/path/to/env/file` in the `[Service]` section
-5. Perform a daemon-reload and restart the newrelic-infra service - `sudo systemctl daemon-reload && sudo systemctl restart newrelic-infra`
+5. Edit the `newrelic-infra.yml` - `sudo nano /etc/newrelic-infra.yml`
+6. Add these lines in `newrelic-infra.yml`
+```
+passthrough_environment:
+  - NEWRELIC_SNOWFLAKE_HOME
+  - SNOWSQL_ACCOUNT
+```
+7. Perform a daemon-reload and restart the newrelic-infra service - `sudo systemctl daemon-reload && sudo systemctl restart newrelic-infra`
 
 The `newrelic-infra.service` file should look similar to below
 
