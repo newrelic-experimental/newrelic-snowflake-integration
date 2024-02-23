@@ -1,6 +1,6 @@
 {
   "name": "snowflakeintegration",
-  "version": "0.1.11",
+  "version": "1.0.0",
   "description": "newrelic snowflake integration",
   "main": "snowflake.js",
   "bin": "snowflake.js",
@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/newrelic/newrelic-snowflake-integration#readme",
   "dependencies": {
-    "node-vault": "^0.9.21",
-    "snowflake-sdk": "^1.6.7",
-    "yaml": "^1.10.2"
+    "node-vault": "^0.10.2",
+    "parse-duration": "^1.1.0",
+    "snowflake-sdk": "^1.9.3",
+    "winston": "^3.11.0",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
-    "pkg": "^5.8.0"
+    "pkg": "^5.8.1"
   }
 }

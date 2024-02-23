@@ -1,11 +1,29 @@
-authentication:
-  obfuscation: # optional
-    key: replaceme
-credentials:
-  useKeyPairAuth: false
-  account: replaceme
-  user: replaceme
-  password: replaceme
-  role: replaceme
-  warehouse: replaceme
-  privateKey: replaceme
+# loglevel: Optional. error | warn | info | verbose | debug .Default value is 'info'.
+logLevel:
+# connection: Snowflake connection values. See https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver-options
+connection:
+  # account: Snowflake Organization-Account. Use SELECT DISTINCT ORGANIZATION_NAME,ACCOUNT_NAME FROM SNOWFLAKE.ORGANIZATION_USAGE.RATE_SHEET_DAILY; for help
+  account: <organization-account>
+  # username: Snowflake username
+  username: <username>
+  # role: Snowflake Role
+  role: <role>
+  # warehouse: Snowflake warehouse
+  warehouse: <warehouse>
+  # authenticator: SNOWFLAKE (userid/passord) | OAUTH | SNOWFLAKE_JWT (key-pair)
+  authenticator: <Snowflake_Authenticator>
+
+  # password: Required for SNOWFLAKE authenticator
+  password: <password>
+
+  # token: Required for OAUTH. See https://yaml-multiline.info/ for help with yaml multiline strings
+  token: <token>
+
+  # Params for SNOWFLAKE_JWT (key-pair) authentication.
+  privateKey: |
+    -----BEGIN PRIVATE KEY-----
+    ...
+    -----END PRIVATE KEY-----
+  privateKeyPath: <path_to_private_key>
+  # privateKeyPass:
+  privateKeyPass: <private_key_password>
