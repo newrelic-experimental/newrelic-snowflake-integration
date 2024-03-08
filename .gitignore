@@ -4,6 +4,7 @@ node_modules
 # ide
 .idea
 .DS_Store
+local
 
 #environment secrets
 env.sh

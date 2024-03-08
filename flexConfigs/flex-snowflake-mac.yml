@@ -17,63 +17,63 @@ integrations:
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql -i 3600s
         - name: snowflakeAutomaticClusteringUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.automatic_clustering
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/automatic_clustering_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/automatic_clustering_usage.sql -i 3600s
         - name: snowflakeDataTransferUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.data_transfer
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/data_transfer_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/data_transfer_usage.sql -i 3600s
         - name: snowflakeDatabaseStorageUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.database_storage
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/database_storage_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/database_storage_usage.sql -i 3600s
         - name: snowflakeLoginHistory
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.login_history
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/login_history.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/login_history.sql -i 3600s
         - name: snowflakePipeUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.pipe_usage
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/pipe_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/pipe_usage.sql -i 3600s
         - name: snowflakeReplicationUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.replication_usage
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/replication_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/replication_usage.sql -i 3600s
         - name: snowflakeStorageUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.storage_usage
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/storage_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/storage_usage.sql -i 3600s
         - name: snowflakeTableStorageUsage
           entity: snowflake
           event_type: SnowflakeAccount
           custom_attributes:
             metric_type: snowflake.table_storage_usage
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/table_storage_usage.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/table_storage_usage.sql -i 3600s
         # Query History emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeQueryHistory
@@ -82,7 +82,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.query_performance
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/query_history.sql -i 3600s
         # Warehouse Load History emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeWarehouseLoadHistory
@@ -91,7 +91,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.warehouse_performance
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_load_history.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_load_history.sql -i 3600s
         # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: snowflakeWarehouseMetering
@@ -100,7 +100,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_metering.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/warehouse_metering.sql -i 3600s
         # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: longestQueries
@@ -109,7 +109,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.query_performance
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/longest_queries.sql
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/longest_queries.sql -i 3600s
             # Snowflake Warehouse Metering emits under a different event type - SnowflakeVirtualWarehouse
         # since these metrics are related to a particular warehouse.
         - name: CreditUsageByWarehouse
@@ -117,5 +117,5 @@ integrations:
           event_type: SnowflakeVirtualWarehouse
           custom_attributes:
             metric_type: snowflake.credit_usage_by_warehouse
-          commands: 
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos $$NEWRELIC_SNOWFLAKE_HOME/config.yaml $$NEWRELIC_SNOWFLAKE_HOME/queries/credit_usage_by_warehouse.sql
+          commands:
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/credit_usage_by_warehouse.sql -i 3600s
