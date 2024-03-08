@@ -26,7 +26,7 @@
   "dependencies": {
     "node-vault": "^0.10.2",
     "parse-duration": "^1.1.0",
-    "snowflake-sdk": "^1.9.3",
+    "snowflake-sdk": "^1.10.0",
     "winston": "^3.11.0",
     "yaml": "^2.3.4"
   },
