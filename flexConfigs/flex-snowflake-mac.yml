@@ -17,7 +17,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/metering_history.sql -i 3600s
+            - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-macos -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql -i 3600s
         - name: snowflakeAutomaticClusteringUsage
           entity: snowflake
           event_type: SnowflakeAccount

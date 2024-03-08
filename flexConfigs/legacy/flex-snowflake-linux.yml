@@ -17,7 +17,7 @@ integrations:
           custom_attributes:
             metric_type: snowflake.billing
           commands:
-            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/queries/metering_history.sql
+            - run: SNOWSQL_ACCOUNT="$$SNOWSQL_ACCOUNT" SNOWSQL_USER="$$SNOWSQL_USER" SNOWSQL_PWD="$$SNOWSQL_PWD" SNOWSQL_ROLE="$$SNOWSQL_ROLE" $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-linux $$NEWRELIC_SNOWFLAKE_HOME/queries/account_metering.sql
         - name: snowflakeAutomaticClusteringUsage
           entity: snowflake
           event_type: SnowflakeAccount
