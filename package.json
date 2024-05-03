@@ -1,11 +1,14 @@
 {
   "name": "snowflakeintegration",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "newrelic snowflake integration",
   "main": "snowflake.js",
   "bin": "snowflake.js",
   "scripts": {
-    "pkg:run": "npx pkg ."
+    "pkg:run": "npx pkg -c pkg.config.json ./dist/snowflakeintegration.js",
+    "esbuild:run": "npx esbuild ./snowflake.js --bundle --outfile=dist/snowflakeintegration.js --platform=node",
+    "build": "npm run esbuild:run && npm run pkg:run",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
@@ -26,11 +29,12 @@
   "dependencies": {
     "node-vault": "^0.10.2",
     "parse-duration": "^1.1.0",
-    "snowflake-sdk": "^1.9.3",
+    "snowflake-sdk": "^1.10.1",
     "winston": "^3.11.0",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
+    "esbuild": "0.20.2",
     "pkg": "^5.8.1"
   }
 }

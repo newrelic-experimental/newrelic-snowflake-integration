@@ -8,3 +8,7 @@ local
 
 #environment secrets
 env.sh
+
+*.local.*
+dist
+*.log
