@@ -12,47 +12,6 @@ Version 1.0 introduces a number of breaking changes over previous versions.
 - Obfuscation of connection parameters is no longer supported
 - The [command line](#command-line-parameters) (`run: `) now uses flagged parameters rather than positional parameters
 
-## Configuration
-
-Configuration is driven by the `config.yaml` in the root directory of the integration.
-
-```yaml
-# loglevel: Optional. error | warn | info | verbose | debug .Default value is 'info'.
-logLevel:
-# connection: Snowflake connection values. See https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver-options
-connection:
-  # account: Snowflake Organization-Account. Use SELECT DISTINCT ORGANIZATION_NAME,ACCOUNT_NAME FROM SNOWFLAKE.ORGANIZATION_USAGE.RATE_SHEET_DAILY; for help
-  account: <organization-account>
-  # username: Snowflake username
-  username: <username>
-  # role: Snowflake Role
-  role: <role>
-  # warehouse: Snowflake warehouse
-  warehouse: <warehouse>
-  # authenticator: SNOWFLAKE (userid/passord) | OAUTH | SNOWFLAKE_JWT (key-pair)
-  authenticator: <Snowflake_Authenticator>
-
-  # password: Required for SNOWFLAKE authenticator
-  password: <password>
-
-  # token: Required for OAUTH. See https://yaml-multiline.info/ for help with yaml multiline strings
-  token: <token>
-
-  # Params for SNOWFLAKE_JWT (key-pair) authentication. See important note below.
-  privateKey: |
-    -----BEGIN PRIVATE KEY-----
-    ...
-    -----END PRIVATE KEY-----
-  privateKeyPath: <path_to_private_key>
-  # privateKeyPass: See important note below!
-  privateKeyPass: <private_key_password>
-  ```
-
-### Key-Pair authentication
-
-1. Either `privateKey` or `privateKeyPath` is REQUIRED
-2. DO NOT GENERATE A KEY-PAIR WITH AN EMPTY PASSWORD! Either use a password or `-nocrypt`, an empty password WILL NOT WORK.
-
 ## Installation
 
 1. [Install the New Relic Infrastructure agent](https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent) for your platform
@@ -120,6 +79,53 @@ PIDFile=/var/run/newrelic-infra/newrelic-infra.pid
 ...
 ```
 
+## Configuration
+
+Configuration is driven by the `config.yaml` in the root directory of the integration.
+
+```yaml
+# loglevel: Optional. error | warn | info | verbose | debug .Default value is 'info'.
+logLevel:
+# connection: Snowflake connection values. See https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver-options
+connection:
+  # account: Snowflake Organization-Account. Use SELECT DISTINCT ORGANIZATION_NAME,ACCOUNT_NAME FROM SNOWFLAKE.ORGANIZATION_USAGE.RATE_SHEET_DAILY; for help
+  account: <organization-account>
+  # username: Snowflake username
+  username: <username>
+  # role: Snowflake Role
+  role: <role>
+  # warehouse: Snowflake warehouse
+  warehouse: <warehouse>
+  # authenticator: SNOWFLAKE (userid/passord) | OAUTH | SNOWFLAKE_JWT (key-pair)
+  authenticator: <Snowflake_Authenticator>
+
+  # password: Required for SNOWFLAKE authenticator
+  password: <password>
+
+  # token: Required for OAUTH. See https://yaml-multiline.info/ for help with yaml multiline strings
+  token: <token>
+
+  # Params for SNOWFLAKE_JWT (key-pair) authentication. See important note below.
+  privateKey: |
+    -----BEGIN PRIVATE KEY-----
+    ...
+    -----END PRIVATE KEY-----
+  privateKeyPath: <path_to_private_key>
+  # privateKeyPass: See important note below!
+  privateKeyPass: <private_key_password>
+  ```
+
+For more information on the `connection` options, refer to the
+[snowflake Node.js driver documentation](https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver).
+In particular, see [the "Authenticate" section](https://docs.snowflake.com/en/developer-guide/node-js/nodejs-driver-authenticate)
+for help setting the authentication options as well as links to the relevant
+sections of the Snowflake authentication documentation.
+
+### Key-Pair authentication
+
+1. Either `privateKey` or `privateKeyPath` is REQUIRED
+2. DO NOT GENERATE A KEY-PAIR WITH AN EMPTY PASSWORD! Either use a password or `-nocrypt`, an empty password WILL NOT WORK.
+
 ## Usage
 
 This integration comes out of the box with queries to capture a good range of performance related data from the ACCOUNT_USAGE schema. If you want to extend the integration to run custom queries, see the instructions below
@@ -173,6 +179,34 @@ To add your own custom query, you need to follow a few steps
   commands:
     - run: $$NEWRELIC_SNOWFLAKE_HOME/snowflakeintegration-<platform> -c $$NEWRELIC_SNOWFLAKE_HOME/config.yaml -q $$NEWRELIC_SNOWFLAKE_HOME/queries/<your_custom_query>.sql -i 60s
 ```
+
+## Building
+
+The snowflake integration is a Node.js app and can be run directly from the
+command line using `node` and therefore requires no "building". However, the
+integration is [released](https://github.com/newrelic-experimental/newrelic-snowflake-integration/releases)
+as a set of platform-specific binaries. These binaries are created using
+[pkg](https://github.com/vercel/pkg) as part of
+[the GitHub workflow](./.github/workflows/create-release-upload-assets.yml) when
+a new tag is provisioned. Creating the binaries is a two step process.
+
+1. First [esbuild](https://esbuild.github.io/) is used to transpile the
+   integration into one single Javascript file. This helps avoid issues when
+   allowing `pkg` to do that as it doesn't quite support ES6 style modules.
+2. Second [pkg](https://github.com/vercel/pkg) is run using the generated output
+   from `esbuild` and the [the pkg.config.json](./pkg.config.json) to generate
+   the set of platform-specific binaries.
+
+Note that this is essentially the same process as creating a
+[single executable application](https://nodejs.org/docs/latest-v20.x/api/single-executable-applications.html)
+in Node 20+. However, `pkg` provides some niceties that aren't yet part of the
+SEA solution such as automatically downloading the `node` base binaries and
+copying source files and assets.
+
+This process can be run locally by executing `npm run build`. The resulting
+transpiled Javascript file and binary files are created in the `dist` directory.
+See the `scripts` section of [the package.json](./package.json) file for the
+commands that are executed for performing this process.
 
 ## Support
 
