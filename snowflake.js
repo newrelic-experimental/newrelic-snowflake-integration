@@ -72,6 +72,19 @@ function setLogLevel(logLevel) {
     }
 }
 
+function toSnowflakeLogLevel(winstonLogLevel) {
+    const logLevelMapping = {
+        error: 'ERROR',
+        warn: 'WARNING',
+        info: 'INFO',
+        http: 'DEBUG',
+        verbose: 'DEBUG',
+        debug: 'DEBUG',
+        silly: 'TRACE'
+    };
+    return logLevelMapping[winstonLogLevel] || 'OFF';
+}
+
 function revealConfig() {
     // if (config.obfuscationEncodingKey != null && config.obfuscationEncodingKey.toString().length > 0) {
     //     for (const [key, value] of Object.entries(config.connection)) {
@@ -168,7 +181,7 @@ function execute() {
     const parsedOptions = parseOptions(), 
         config = loadNriConfig(parsedOptions)
     
-    snowflake.configure({ logLevel: 'ERROR', additionalLogToConsole: false })
+    snowflake.configure({ logLevel: toSnowflakeLogLevel(config.logLevel), additionalLogToConsole: false })
     const connection = snowflake.createConnection(config.connection)
 
     connection.connect((err, connection) => {
