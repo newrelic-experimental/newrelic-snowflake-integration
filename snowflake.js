@@ -79,7 +79,7 @@ function setSnowflakeLogLevel(logLevel) {
         ? logLevel.toUpperCase() 
         : 'ERROR'
 
-    snowflake.configure({ logLevel: configuredLogLevel })
+    snowflake.configure({ logLevel: config.logLevel, additionalLogToConsole: false })
 }
 
 function revealConfig() {
