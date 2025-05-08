@@ -39,6 +39,16 @@ const options = {
         format.simple(),
     )
 
+const LOG_LEVEL_MAPPING = {
+        error: 'ERROR',
+        warn: 'WARNING',
+        info: 'INFO',
+        http: 'DEBUG',
+        verbose: 'DEBUG',
+        debug: 'DEBUG',
+        silly: 'TRACE'
+}
+
 let logger
 
 function usage() {
@@ -73,16 +83,11 @@ function setLogLevel(logLevel) {
 }
 
 function toSnowflakeLogLevel(winstonLogLevel) {
-    const logLevelMapping = {
-        error: 'ERROR',
-        warn: 'WARNING',
-        info: 'INFO',
-        http: 'DEBUG',
-        verbose: 'DEBUG',
-        debug: 'DEBUG',
-        silly: 'TRACE'
-    };
-    return logLevelMapping[winstonLogLevel] || 'OFF';
+    if (!winstonLogLevel) {
+        return 'OFF'
+    }
+
+    return LOG_LEVEL_MAPPING[winstonLogLevel.trim().toLowerCase()] || 'OFF'
 }
 
 function revealConfig() {
