@@ -39,6 +39,16 @@ const options = {
         format.simple(),
     )
 
+const LOG_LEVEL_MAPPING = {
+        error: 'ERROR',
+        warn: 'WARNING',
+        info: 'INFO',
+        http: 'DEBUG',
+        verbose: 'DEBUG',
+        debug: 'DEBUG',
+        silly: 'TRACE'
+}
+
 let logger
 
 function usage() {
@@ -70,6 +80,14 @@ function setLogLevel(logLevel) {
     if (logLevel != null) {
         logger.level = logLevel
     }
+}
+
+function toSnowflakeLogLevel(winstonLogLevel) {
+    if (!winstonLogLevel) {
+        return 'OFF'
+    }
+
+    return LOG_LEVEL_MAPPING[winstonLogLevel.trim().toLowerCase()] || 'OFF'
 }
 
 function revealConfig() {
@@ -165,9 +183,11 @@ function parseOptions() {
 }
 
 function execute() {
-    const parsedOptions = parseOptions(),
-        config = loadNriConfig(parsedOptions),
-        connection = snowflake.createConnection(config.connection)
+    const parsedOptions = parseOptions(), 
+        config = loadNriConfig(parsedOptions)
+    
+    snowflake.configure({ logLevel: toSnowflakeLogLevel(config.logLevel), additionalLogToConsole: false })
+    const connection = snowflake.createConnection(config.connection)
 
     connection.connect((err, connection) => {
         if (err) {
